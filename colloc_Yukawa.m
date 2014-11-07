@@ -9,7 +9,7 @@ for i=1:np
   V(:,i) = phi'/4/pi;
   K(:,i) = phiDouble'/4/pi;
   if mod(i,25)==0
-	 fprintf('Done with %d columns.\n',i);
+%	 fprintf('Done with %d columns.\n',i);
   end
 end
 
