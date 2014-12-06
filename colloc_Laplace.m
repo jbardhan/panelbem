@@ -9,4 +9,7 @@ for i=1:np
   V(:,i) = fss'/4/pi;
   K(:,i) = fds'/4/pi;
   Kp(:,i) = fess'/4/pi;
+  if mod(i,25)==0
+	 fprintf('Done with %d of %d columns.\n',i,np);
+  end
 end
