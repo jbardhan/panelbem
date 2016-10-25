@@ -1,7 +1,7 @@
 function [V, K] = colloc_Yukawa(meshData,centroids,normals,areas,kappa)
 
 np = size(meshData.face,1);
-for i=1:np
+parfor i=1:np
   numverts = 3;
   panel = [meshData.X(:,i) meshData.Y(:,i) meshData.Z(:,i)];
   
