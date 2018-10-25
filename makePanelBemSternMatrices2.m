@@ -98,102 +98,103 @@ ZS2S1 = zeros(npStern2, npStern1);
 %A
 A11 = (Idiel1/2 + diel1Diel1Op.K);
 A12 = -diel1Diel1Op.V;
-A13 = ZD1D2;
-A14 = ZD1D2;
-A15 = ZD1S1;
-A16 = ZD1S1;
+A13 = ZD1S1;
+A14 = ZD1S1;
+A15 = ZD1D2;
+A16 = ZD1D2;
 A17 = ZD1S2;
 A18 = ZD1S2;
 
 A21 = (Idiel1/2 - diel1Diel1Op.K);
 A22_base = diel1Diel1Op.V;
-A23 = ZD1D2;
-A24 = ZD1D2;
-A25 = stern1ToDiel1Op.K;
-A26 = -stern1ToDiel1Op.V;
+A23 = stern1ToDiel1Op.K;
+A24 = -stern1ToDiel1Op.V;
+A25 = ZD1D2;
+A26 = ZD1D2;
 A27 = ZD1S2;
 A28 = ZD1S2;
 
-A31 = ZD2D1;
-A32 = ZD2D1;
-A33 = (Idiel2/2+diel2Diel2Op.K);
-A34 = -diel2Diel2Op.V;
-A35 = ZD2S1;
-A36 = ZD2S1;
-A37 = ZD2S2;
-A38 = ZD2S2;
+A31 = -diel1ToStern1Op.K;
+A32_base = diel1ToStern1Op.V;
+A33 = (Istern1/2+stern1Stern1Laplace.K);
+A34 = -stern1Stern1Laplace.V;
+A35 = ZS1D2;
+A36 = ZS1D2;
+A37 = ZS1S2;
+A38 = ZS1S2;
 
-A41 = ZD2D1;
-A42 = ZD2D1; 
-A43 = (Idiel2/2-diel2Diel2Op.K);
-A44_base = diel2Diel2Op.V;
-A45 = ZD2S1; 
-A46 = ZD2S1; 
-A47 = stern2ToDiel2Op.K; 
-A48 = -stern2ToDiel2Op.V; 
+A41 = ZS1D1;
+A42 = ZS1D1; 
+A43 = (Istern1/2-stern1Stern1Yukawa.K);
+A44_base = stern1Stern1Yukawa.V;
+A45 = ZS1D2; 
+A46 = ZS1D2; 
+A47 = -stern2Stern1Yukawa.K; 
+A48_base = stern2Stern1Yukawa.V; 
 
-A51 = -diel1ToStern1Op.K;
-A52_base = diel1ToStern1Op.V;
-A53 = ZS1D2;
-A54 = ZS1D2;
-A55 = (Istern1/2+stern1Stern1Laplace.K);
-A56 = -stern1Stern1Laplace.V;
-A57 = ZS1S2;
-A58 = ZS1S2;
+A51 = ZD2D1;
+A52 = ZD2D1;
+A53 = ZD2S1;
+A54 = ZD2S1;
+A55 = (Idiel2/2+diel2Diel2Op.K);
+A56 = -diel2Diel2Op.V;
+A57 = ZD2S2;
+A58 = ZD2S2;
 
 
-A61 = ZS1D1;
-A62 = ZS1D1;
-A63 = ZS1D2;
-A64 = ZS1D2;
-A65 = (Istern1/2-stern1Stern1Yukawa.K);
-A66_base = stern1Stern1Yukawa.V; 
-A67 = -stern2Stern1Yukawa.K;
-A68_base = stern2Stern1Yukawa.V;
+A61 = ZD2D1;
+A62 = ZD2D1;
+A63 = ZD2S1;
+A64 = ZD2S1;
+A65 = (Idiel2/2 - diel2Diel2Op.K);
+A66_base = diel2Diel2Op.V;
+A67 = stern2ToDiel2Op.K;
+A68 = -stern2ToDiel2Op.V;
 
 
 A71 = ZS2D1;
 A72 = ZS2D1;
-A73 = -diel2ToStern2Op.K;
-A74_base = diel2ToStern2Op.V;
-A75 = ZS2S1;
-A76 = ZS2S1;
+A73 = ZS2S1;
+A74 = ZS2S1;
+A75 = -diel2ToStern2Op.K;
+A76_base = diel2ToStern2Op.V;
 A77 = (Istern2/2+stern2Stern2Laplace.K);
 A78 = -stern2Stern2Laplace.V;
 
 
 A81 = ZS2D1;
 A82 = ZS2D1;
-A83 = ZS2D2;
-A84 = ZS2D2;
-A85 = -stern1Stern2Yukawa.K;
-A86_base = stern1Stern2Yukawa.V;
+A83 = -stern1Stern2Yukawa.K; 
+A84_base = stern1Stern2Yukawa.V; 
+A85 = ZS2D2;
+A86 = ZS2D2;
 A87 = (Istern2/2-stern2Stern2Yukawa.K);
 A88_base = stern2Stern2Yukawa.V;
 
 
 A = [A11 A12 A13 A14 A15 A16 A17 A18;
      A21 (epsIn1/epsOut)*A22_base A23 A24 A25 A26 A27 A28;
-     A31 A32 A33 A34 A35 A36 A37 A38;
-     A41 A42 A43 (epsIn2/epsOut)*A44_base A45 A46 A47 A48;
-     A51 (epsIn1/epsOut)*A52_base A53 A54 A55 A56 A57 A58;
-     A61 A62 A63 A64 A65 (epsOut/epsOut)*A66_base A67 (epsOut/epsOut)*A68_base;
-     A71 A72 A73 (epsIn2/epsOut)*A74_base A75 A76 A77 A78;
-     A81 A82 A83 A84 A85 (epsOut/epsOut)*A86_base A87 (epsOut/epsOut)*A88_base];
+     A31 (epsIn1/epsOut)*A32_base A33 A34 A35 A36 A37 A38;
+     A41 A42 A43 (epsIn2/epsOut)*A44_base A45 A46 A47 (epsOut/epsOut)*A48_base;
+     A51 A52 A53 A54 A55 A56 A57 A58;
+     A61 A62 A63 A64 A65 (epsIn2/epsOut)*A66_base A67 A68;
+     A71 A72 A73 A74 A75 (epsIn2/epsOut)*A76_base A77 A78;
+     A81 A82 A83 (epsOut/epsOut)*A84_base A85 A86 A87 (epsOut/epsOut)*A88_base];
      
 B = [diel1ChargeOp.phiCoul/epsIn1;
      zeros(npDiel1,nCharges1);
+     zeros(npStern1,nCharges1);
+     zeros(npStern1,nCharges1);
      diel2ChargeOp.phiCoul/epsIn2;
      zeros(npDiel2,nCharges2);
-     zeros(npStern1,nCharges1);
-     zeros(npStern1,nCharges1);
      zeros(npStern2,nCharges2);
-     zeros(npStern2,nCharges2)];
+     zeros(npStern2,nCharges2);];
+
 
 C = 4*pi*[-diel1ChargeOp.dlpToCharges diel1ChargeOp.slpToCharges ...
-    -diel2ChargeOp.dlpToCharges diel2ChargeOp.slpToCharges ...
-     zeros(nCharges1,npStern1) zeros(nCharges1, npStern1) ...    
-     zeros(nCharges2,npStern2) zeros(nCharges2, npStern2)];
+     zeros(nCharges1,npStern1) zeros(nCharges1, npStern1) ...
+     -diel2ChargeOp.dlpToCharges diel2ChargeOp.slpToCharges ...
+     zeros(nCharges2,npStern2) zeros(nCharges2, npStern2);];
 
 bem = struct('B', B, 'A', A, 'C', C,...
 	     'diel1ChargeOp',diel1ChargeOp,...
@@ -214,15 +215,15 @@ bem = struct('B', B, 'A', A, 'C', C,...
 	     'A15',A15,'A16',A16,'A17',A17,'A18',A18,...
 	     'A21',A21,'A22_base',A22_base,'A23',A23,'A24',A24,...
 	     'A25',A25,'A26',A26,'A27',A27,'A28',A28,...
-         'A31',A31,'A32',A32,'A33',A33,'A34',A34,...
+         'A31',A31,'A32_base',A32_base,'A33',A33,'A34',A34,...
 	     'A35',A35,'A36',A36,'A37',A37,'A38',A38,...
 	     'A41',A41,'A42',A42,'A43',A43,'A44_base',A44_base,...
-	     'A45',A45,'A46',A46,'A47',A47,'A48',A48,...
-	     'A51',A51,'A52_base',A52_base,'A53',A53,'A54',A54,...
+	     'A45',A45,'A46',A46,'A47',A47,'A48_base',A48_base,...
+	     'A51',A51,'A52',A52,'A53',A53,'A54',A54,...
 	     'A55',A55,'A56',A56,'A57',A57,'A58',A58,...
 	     'A61',A61,'A62',A62,'A63',A63,'A64',A64,...
-	     'A65',A65,'A66_base',A66_base,'A67',A67,'A68_base',A68_base,...
-         'A71',A71,'A72',A72,'A73',A73,'A74_base',A74_base,...
-	     'A75',A75,'A76',A76,'A77',A77,'A78',A78,...
-	     'A81',A81,'A82',A82,'A83',A83,'A84',A84,...
-	     'A85',A85,'A86_base',A86_base,'A87',A87,'A88_base',A88_base);
+	     'A65',A65,'A66_base',A66_base,'A67',A67,'A68',A68,...
+         'A71',A71,'A72',A72,'A73',A73,'A74',A74,...
+	     'A75',A75,'A76_base',A76_base,'A77',A77,'A78',A78,...
+	     'A81',A81,'A82',A82,'A83',A83,'A84_base',A84_base,...
+	     'A85',A85,'A86',A86,'A87',A87,'A88_base',A88_base);
