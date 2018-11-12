@@ -175,13 +175,22 @@ A88_base = stern2Stern2Yukawa.V;
 A = [A11 A12 A13 A14 A15 A16 A17 A18;
      A21 (epsIn1/epsOut)*A22_base A23 A24 A25 A26 A27 A28;
      A31 (epsIn1/epsOut)*A32_base A33 A34 A35 A36 A37 A38;
-     A41 A42 A43 (epsIn2/epsOut)*A44_base A45 A46 A47 (epsOut/epsOut)*A48_base;
+     A41 A42 A43 (epsOut/epsOut)*A44_base A45 A46 A47 (epsOut/epsOut)*A48_base;
      A51 A52 A53 A54 A55 A56 A57 A58;
      A61 A62 A63 A64 A65 (epsIn2/epsOut)*A66_base A67 A68;
      A71 A72 A73 A74 A75 (epsIn2/epsOut)*A76_base A77 A78;
      A81 A82 A83 (epsOut/epsOut)*A84_base A85 A86 A87 (epsOut/epsOut)*A88_base];
      
-B = [diel1ChargeOp.phiCoul/epsIn1;
+B1 = [diel1ChargeOp.phiCoul/epsIn1;
+     zeros(npDiel1,nCharges1);
+     zeros(npStern1,nCharges1);
+     zeros(npStern1,nCharges1);
+     zeros(npDiel2,nCharges2);
+     zeros(npDiel2,nCharges2);
+     zeros(npStern2,nCharges2);
+     zeros(npStern2,nCharges2);];
+     
+B2 = [zeros(npDiel1,nCharges1);
      zeros(npDiel1,nCharges1);
      zeros(npStern1,nCharges1);
      zeros(npStern1,nCharges1);
@@ -191,12 +200,18 @@ B = [diel1ChargeOp.phiCoul/epsIn1;
      zeros(npStern2,nCharges2);];
 
 
-C = 4*pi*[-diel1ChargeOp.dlpToCharges diel1ChargeOp.slpToCharges ...
+C1 = 4*pi*[-diel1ChargeOp.dlpToCharges diel1ChargeOp.slpToCharges ...
+     zeros(nCharges1,npStern1) zeros(nCharges1, npStern1) ...
+     zeros(nCharges2,npDiel2) zeros(nCharges2, npDiel2) ...
+     zeros(nCharges2,npStern2) zeros(nCharges2, npStern2);];
+
+C2 = 4*pi*[zeros(nCharges1,npDiel1) zeros(nCharges1, npDiel1) ...
      zeros(nCharges1,npStern1) zeros(nCharges1, npStern1) ...
      -diel2ChargeOp.dlpToCharges diel2ChargeOp.slpToCharges ...
      zeros(nCharges2,npStern2) zeros(nCharges2, npStern2);];
-
-bem = struct('B', B, 'A', A, 'C', C,...
+ 
+bem = struct('A', A,'B1', B1, 'B2', B2 ,...
+         'C1',C1 ,'C2', C2 , ...
 	     'diel1ChargeOp',diel1ChargeOp,...
 	     'diel2ChargeOp',diel2ChargeOp,...
 	     'diel1Diel1Op',diel1Diel1Op,...
