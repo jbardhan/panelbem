@@ -185,15 +185,15 @@ B1 = [diel1ChargeOp.phiCoul/epsIn1;
      zeros(npDiel1,nCharges1);
      zeros(npStern1,nCharges1);
      zeros(npStern1,nCharges1);
-     zeros(npDiel2,nCharges2);
-     zeros(npDiel2,nCharges2);
-     zeros(npStern2,nCharges2);
-     zeros(npStern2,nCharges2);];
+     zeros(npDiel2,nCharges1);
+     zeros(npDiel2,nCharges1);
+     zeros(npStern2,nCharges1);
+     zeros(npStern2,nCharges1);];
      
-B2 = [zeros(npDiel1,nCharges1);
-     zeros(npDiel1,nCharges1);
-     zeros(npStern1,nCharges1);
-     zeros(npStern1,nCharges1);
+B2 = [zeros(npDiel1,nCharges2);
+     zeros(npDiel1,nCharges2);
+     zeros(npStern1,nCharges2);
+     zeros(npStern1,nCharges2);
      diel2ChargeOp.phiCoul/epsIn2;
      zeros(npDiel2,nCharges2);
      zeros(npStern2,nCharges2);
@@ -202,11 +202,11 @@ B2 = [zeros(npDiel1,nCharges1);
 
 C1 = 4*pi*[-diel1ChargeOp.dlpToCharges diel1ChargeOp.slpToCharges ...
      zeros(nCharges1,npStern1) zeros(nCharges1, npStern1) ...
-     zeros(nCharges2,npDiel2) zeros(nCharges2, npDiel2) ...
-     zeros(nCharges2,npStern2) zeros(nCharges2, npStern2);];
+     zeros(nCharges1,npDiel2) zeros(nCharges1, npDiel2) ...
+     zeros(nCharges1,npStern2) zeros(nCharges1, npStern2);];
 
-C2 = 4*pi*[zeros(nCharges1,npDiel1) zeros(nCharges1, npDiel1) ...
-     zeros(nCharges1,npStern1) zeros(nCharges1, npStern1) ...
+C2 = 4*pi*[zeros(nCharges2,npDiel1) zeros(nCharges2, npDiel1) ...
+     zeros(nCharges2,npStern1) zeros(nCharges2, npStern1) ...
      -diel2ChargeOp.dlpToCharges diel2ChargeOp.slpToCharges ...
      zeros(nCharges2,npStern2) zeros(nCharges2, npStern2);];
  
