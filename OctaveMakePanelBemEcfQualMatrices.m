@@ -1,7 +1,8 @@
-function bem = makePanelBemEcfQualMatrices(surf, pqr, epsIn, epsOut)
-disp("beginning of makePanelBemEcfQualMatrices");
+% The parallelized Octave version of makePanelBemEcfQualMatrices
+function bem = OctaveMakePanelBemEcfQualMatrices(surf, pqr, epsIn, epsOut)
+disp("beginning of OctaveMakePanelBemEcfQualMatrices");
 epsHat = (epsIn+epsOut)/(epsIn-epsOut);
-surfsurfop = makeSurfaceToSurfaceLaplacePanelOperators(surf);
+surfsurfop = OctaveMakeSurfaceToSurfaceLaplacePanelOperators(surf);
 chargesurfop = makeSurfaceToChargePanelOperators(surf, pqr);
 
 % the two factors below 
@@ -11,4 +12,4 @@ C = 4*pi*  chargesurfop.slpToCharges;
 A = surfsurfop.K'*diag(surf.areas) + diag(surf.areas)*epsHat/2;
 
 bem = struct('B', B, 'A', A, 'C', C,'surfsurfop',surfsurfop,'chargesurfop',chargesurfop);
-disp("end of makePanelBemEcfQualMatrices");
+disp("end of OctaveMakePanelBemEcfQualMatrices");

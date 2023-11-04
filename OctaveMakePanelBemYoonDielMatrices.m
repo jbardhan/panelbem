@@ -1,7 +1,7 @@
-function bem = makePanelBemYoonDielMatrices(surf, pqr, epsIn, ...
+% The parallelized Octave version of makePanelBemYoonDielMatrices
+function bem = OctaveMakePanelBemYoonDielMatrices(surf, pqr, epsIn, ...
 					    epsOut)
-
-disp("beginning of makePanelBemYoonDielMatrices");
+disp("beginning of OctaveMakePanelBemYoonDielMatrices");
 npDiel = length(surf.areas);
 nCharges = length(pqr.q);
 
@@ -9,7 +9,8 @@ dielChargeOp = makeSurfaceToChargePanelOperators(surf,pqr);
 
 Idiel = eye(npDiel);
 
-dielDielOp = makeSurfaceToSurfaceLaplacePanelOperators(surf);
+%dielDielOp = makeSurfaceToSurfaceLaplacePanelOperators(surf);
+dielDielOp = OctaveMakeSurfaceToSurfaceLaplacePanelOperators(surf);
 
 A11 = (Idiel/2 + dielDielOp.K);
 A12 = -dielDielOp.V;
@@ -28,4 +29,4 @@ bem = struct('B', B, 'A', A, 'C', C,...
 	     'dielDielOp',dielDielOp,...
 	     'A11',A11,'A12',A12,...
 	     'A21',A21,'A22_base',A22_base);
-disp("end of makePanelBemYoonDielMatrices");
+disp("end of OctaveMakePanelBemYoonDielMatrices");

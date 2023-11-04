@@ -17,6 +17,7 @@ function [area,centroid,Z,fss,fds,fess,feds] = calcp(panel,evalpnts,directions)
 
 % First check the input.
 [verts, betterbethree] = size(panel);
+%disp("\n From calcp.m \n");
 
 if betterbethree ~= 3
   'wrong panel format: should be rows of x,y,z vectors!'
@@ -137,7 +138,7 @@ end
 
 % Done with the PANEL SETUP!!!!!!!!!************************************
 
-
+%disp("\n in calcp, done with panel setup \n");
 % Done with Setup, now loop through the evaluation points!!
 for evalindex = 1:numevals
 
@@ -287,3 +288,5 @@ end;
 
 
 
+
+%disp("\n in calcp, after looping through the evaluation points \n");
